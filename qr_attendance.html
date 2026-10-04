@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}QR Attendance{% endblock %}
+{% block content %}
+<div class="page-header"><div><span class="badge">QR ATTENDANCE</span><h1>Dynamic QR Code</h1><p>Generate a QR code for students to scan.</p></div></div>
+{% if student_success %}<div class="alert success">{{ student_success }}</div>{% endif %}
+{% if student_error %}<div class="alert error">{{ student_error }}</div>{% endif %}
+<div class="qr-container">
+    <div class="qr-card">
+        <h2>Scan to Mark Attendance</h2>
+        <div id="qr-wrapper"><div class="qr-placeholder">Click Generate QR</div></div>
+        <p id="qr-timer">QR valid for 60 seconds</p>
+        <button id="generateQR" class="btn primary">Generate New QR</button>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/qr.js') }}"></script>{% endblock %}

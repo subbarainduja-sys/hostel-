@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Rooms{% endblock %}
+{% block content %}
+<div class="page-header"><h1>Hostel Rooms</h1><p>Monitor hostel room allocation.</p></div>
+<div class="room-grid">
+{% for room in rooms %}
+<div class="room-card">
+    <div class="room-number">{{ room.room_number }}</div>
+    <h3>{{ room.block }}</h3>
+    <p>Capacity: {{ room.capacity }}</p>
+    <div class="occupancy"><span>Occupied</span><strong>{{ room.occupied }}</strong></div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

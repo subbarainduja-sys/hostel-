@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Attendance{% endblock %}
+{% block content %}
+<div class="page-header"><h1>Attendance Records</h1><p>Complete hostel attendance history.</p></div>
+<div class="panel"><div class="table-wrapper">
+<table><thead><tr><th>Student ID</th><th>Name</th><th>Room</th><th>Date</th><th>Time</th><th>Method</th><th>Status</th></tr></thead>
+<tbody>
+{% for record in records %}
+<tr><td>{{ record.student_id }}</td><td>{{ record.name }}</td><td>{{ record.room_number }}</td><td>{{ record.date }}</td><td>{{ record.time }}</td><td>{{ record.method }}</td><td><span class="status present">{{ record.status }}</span></td></tr>
+{% else %}
+<tr><td colspan="7">No records available.</td></tr>
+{% endfor %}
+</tbody></table></div></div>
+{% endblock %}

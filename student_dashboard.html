@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div><span class="badge">STUDENT PORTAL</span><h1>Hello, {{ student.name }}</h1><p>Manage your hostel attendance.</p></div>
+</div>
+<div class="student-profile">
+    <div><strong>Student ID</strong><span>{{ student.student_id }}</span></div>
+    <div><strong>Room</strong><span>{{ student.room_number }}</span></div>
+    <div><strong>Department</strong><span>{{ student.department }}</span></div>
+    <div><strong>Year</strong><span>{{ student.year }}</span></div>
+</div>
+<div class="stats-grid">
+    <div class="stat-card"><span>Attendance</span><strong>{{ percentage }}%</strong><small>Overall attendance</small></div>
+    <div class="stat-card success-card"><span>Attendance Records</span><strong>{{ attendance_count }}</strong><small>Total records</small></div>
+</div>
+<div class="attendance-options">
+    <a href="{{ url_for('face_attendance') }}" class="attendance-option">
+        <div>📸</div><h2>Face Attendance</h2><p>Use your smartphone camera.</p>
+    </a>
+    <div class="attendance-option">
+        <div>📱</div><h2>QR Attendance</h2><p>Scan the QR displayed by the warden.</p>
+        <p class="small-text">Ask the warden to display the current QR.</p>
+    </div>
+</div>
+<div class="panel">
+    <h2>Recent Attendance</h2>
+    <div class="table-wrapper">
+        <table><thead><tr><th>Date</th><th>Time</th><th>Method</th><th>Status</th></tr></thead>
+        <tbody>
+        {% for record in recent %}
+        <tr><td>{{ record.date }}</td><td>{{ record.time }}</td><td>{{ record.method }}</td><td><span class="status present">{{ record.status }}</span></td></tr>
+        {% else %}
+        <tr><td colspan="4">No attendance records.</td></tr>
+        {% endfor %}
+        </tbody></table>
+    </div>
+</div>
+{% endblock %}

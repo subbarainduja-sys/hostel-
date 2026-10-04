@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="page-header">
+    <div><span class="badge">ADMIN PANEL</span><h1>Hostel Dashboard</h1><p>Monitor hostel attendance and activity.</p></div>
+</div>
+<div class="stats-grid">
+    <div class="stat-card"><span>Total Students</span><strong>{{ total_students }}</strong><small>Registered students</small></div>
+    <div class="stat-card success-card"><span>Present Today</span><strong>{{ present_today }}</strong><small>Attendance recorded</small></div>
+    <div class="stat-card warning-card"><span>Absent</span><strong>{{ absent_today }}</strong><small>Not yet marked</small></div>
+    <div class="stat-card"><span>Total Rooms</span><strong>{{ total_rooms }}</strong><small>Hostel rooms</small></div>
+    <div class="stat-card danger-card"><span>Pending Leaves</span><strong>{{ leave_pending }}</strong><small>Need approval</small></div>
+</div>
+<div class="dashboard-grid">
+    <div class="panel">
+        <div class="panel-header"><h2>Recent Attendance</h2><a href="{{ url_for('attendance') }}">View All</a></div>
+        <div class="table-wrapper">
+            <table><thead><tr><th>Student</th><th>Date</th><th>Time</th><th>Method</th></tr></thead>
+            <tbody>
+            {% for record in recent %}
+            <tr><td>{{ record.name }}</td><td>{{ record.date }}</td><td>{{ record.time }}</td><td><span class="method-badge">{{ record.method }}</span></td></tr>
+            {% else %}
+            <tr><td colspan="4">No attendance records yet.</td></tr>
+            {% endfor %}
+            </tbody></table>
+        </div>
+    </div>
+    <div class="panel quick-actions">
+        <h2>Quick Actions</h2>
+        <a href="{{ url_for('qr_attendance') }}" class="action-button">📱 Generate QR</a>
+        <a href="{{ url_for('students') }}" class="action-button">👨‍🎓 Manage Students</a>
+        <a href="{{ url_for('rooms') }}" class="action-button">🛏 Manage Rooms</a>
+        <a href="{{ url_for('reports') }}" class="action-button">📊 View Reports</a>
+    </div>
+</div>
+{% endblock %}

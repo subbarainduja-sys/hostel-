@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Smart Hostel Attendance{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <span class="badge">SMART HOSTEL TECHNOLOGY</span>
+        <h1>Hostel Attendance <span>Made Smarter.</span></h1>
+        <p>Smartphone-based QR and face capture attendance system for modern hostels.</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('login') }}" class="btn primary">Login to System</a>
+            <a href="#features" class="btn secondary">Explore Features</a>
+        </div>
+    </div>
+</section>
+<section id="features" class="feature-section">
+    <h2>Smart Attendance Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card"><div class="feature-icon">📱</div><h3>QR Attendance</h3><p>Students scan a dynamic QR code using their smartphone.</p></div>
+        <div class="feature-card"><div class="feature-icon">📸</div><h3>Face Capture</h3><p>Capture the student's face directly using the smartphone camera.</p></div>
+        <div class="feature-card"><div class="feature-icon">📊</div><h3>Smart Dashboard</h3><p>Wardens can monitor attendance and hostel activity.</p></div>
+        <div class="feature-card"><div class="feature-icon">📝</div><h3>Leave Management</h3><p>Students can apply for leave and wardens can approve requests.</p></div>
+    </div>
+</section>
+{% endblock %}

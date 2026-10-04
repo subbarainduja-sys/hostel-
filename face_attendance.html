@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Face Attendance{% endblock %}
+{% block content %}
+<div class="page-header"><div><span class="badge">CAMERA ATTENDANCE</span><h1>Face Capture</h1><p>Use your smartphone camera to capture your face.</p></div></div>
+<div class="camera-container">
+    <div class="camera-card">
+        <video id="camera" autoplay playsinline></video>
+        <canvas id="canvas" style="display:none;"></canvas>
+        <div class="camera-controls">
+            <button id="startCamera" class="btn secondary">Start Camera</button>
+            <button id="captureFace" class="btn primary" disabled>Capture Face</button>
+            <button id="stopCamera" class="btn danger">Stop Camera</button>
+        </div>
+        <div id="faceResult" class="camera-result"></div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/face.js') }}"></script>{% endblock %}

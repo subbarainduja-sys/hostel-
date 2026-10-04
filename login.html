@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Login - Smart Hostel{% endblock %}
+{% block content %}
+<div class="login-wrapper">
+    <div class="login-card">
+        <div class="login-logo">🏠</div>
+        <h1>Welcome Back</h1>
+        <p>Sign in to Smart Hostel Attendance</p>
+        <form method="POST" action="{{ url_for('login') }}">
+            <label>Student ID / Admin ID</label>
+            <input type="text" name="student_id" placeholder="STU001" required>
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required>
+            <button type="submit" class="btn primary full">Login</button>
+        </form>
+        <div class="demo-login">
+            <strong>Demo Accounts</strong>
+            <p>Admin: ADMIN / admin123</p>
+            <p>Student: STU001 / student123</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Leave Management{% endblock %}
+{% block content %}
+<div class="page-header"><h1>Leave Management</h1></div>
+{% if session.get("role") == "student" %}
+<div class="panel">
+    <h2>Apply for Leave</h2>
+    <form method="POST" action="{{ url_for('apply_leave') }}" class="form-grid">
+        <label>From Date<input type="date" name="from_date" required></label>
+        <label>To Date<input type="date" name="to_date" required></label>
+        <label class="full-field">Reason<textarea name="reason" rows="4" placeholder="Reason for leave" required></textarea></label>
+        <button class="btn primary" type="submit">Submit Request</button>
+    </form>
+</div>
+{% endif %}
+<div class="panel">
+    <h2>Leave Requests</h2>
+    <div class="table-wrapper">
+    <table><thead><tr>
+        {% if session.get("role") == "admin" %}<th>Student</th>{% endif %}
+        <th>From</th><th>To</th><th>Reason</th><th>Status</th>
+        {% if session.get("role") == "admin" %}<th>Action</th>{% endif %}
+    </tr></thead>
+    <tbody>
+    {% for item in requests %}
+    <tr>
+        {% if session.get("role") == "admin" %}<td>{{ item.name }}</td>{% endif %}
+        <td>{{ item.from_date }}</td><td>{{ item.to_date }}</td><td>{{ item.reason }}</td><td>{{ item.status }}</td>
+        {% if session.get("role") == "admin" %}
+        <td>
+        {% if item.status == "Pending" %}
+        <a class="small-btn approve" href="{{ url_for('update_leave', request_id=item.id, action='approve') }}">Approve</a>
+        <a class="small-btn reject" href="{{ url_for('update_leave', request_id=item.id, action='reject') }}">Reject</a>
+        {% else %}Completed{% endif %}
+        </td>
+        {% endif %}
+    </tr>
+    {% else %}
+    <tr><td colspan="6">No leave requests.</td></tr>
+    {% endfor %}
+    </tbody></table></div>
+</div>
+{% endblock %}
